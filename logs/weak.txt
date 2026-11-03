@@ -1,0 +1,38 @@
+=== A. Plain-text storage ===
+  alice  | 123456
+  bob    | 123456
+  carol  | password
+  dave   | Summer2024
+  erin   | k9#Vz!2qLm@8Xw4P
+  -> anyone who steals this table reads every password immediately.
+
+=== B. Unsalted SHA-256 storage ===
+  alice  | 8d969eef6ecad3c29a3a629280e686cf...
+  bob    | 8d969eef6ecad3c29a3a629280e686cf...
+  carol  | 5e884898da28047151d0e56f8dc62927...
+  dave   | adfab358825331b18d79db5289eabf28...
+  erin   | 78195511d57ddc4cc8419ba72b60913e...
+  alice == bob hash? True   (equal passwords are visible at once)
+
+=== C. Dictionary attack on the LOCAL demo table (unsalted) ===
+  candidate list : 851 guesses, table built in 1.5 ms
+  alice  -> CRACKED: 123456
+  bob    -> CRACKED: 123456
+  carol  -> CRACKED: password
+  dave   -> CRACKED: Summer2024
+  erin   -> not cracked
+  lookup of all 5 users took 0.005 ms; cracked 4/5
+
+=== D. Same attack when each password has a random salt (SHA-256, still fast) ===
+  alice == bob hash? False   (salt hides duplicates)
+  pre-built table still useful? False
+  per-user guessing: 1,432 hashes, 2 ms, cracked 4/5
+  -> salt defeats pre-computed tables, but a FAST hash is still cheap to guess against.
+
+=== E. Same guessing against PBKDF2-600k (first 5 guesses only) ===
+  guess password     -> no
+  guess Password1    -> no
+  guess Summer2023   -> no
+  guess Summer2022   -> no
+  guess Summer2024   -> MATCH
+  5 guesses took 2.33 s  (~465 ms each) vs ~1.48 microseconds each for plain SHA-256

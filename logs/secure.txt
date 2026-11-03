@@ -1,0 +1,15 @@
+=== Registration: store only salted, slow hashes ===
+  alice  -> pbkdf2_sha256$600000$3389MED2NcCemoT2OIrxzg==$...
+  bob    -> pbkdf2_sha256$600000$IIqf2MsGasb8TAlt+5g2Jg==$...
+  erin   -> pbkdf2_sha256$600000$izpjnyWbfuWczkHEBtaBRg==$...
+  frank  -> scrypt$32768$8$1$CF7L7FhHm3hmHBhGmKinlQ==$Wy6S...   (scrypt)
+  saved to users_db.json (no plain-text passwords stored)
+  alice and bob used the SAME password. Stored values equal? False
+
+=== Login attempts ===
+  login alice  with 123456                 -> ACCESS GRANTED
+  login alice  with 1234567                -> ACCESS DENIED
+  login erin   with k9#Vz!2qLm@8Xw4P       -> ACCESS GRANTED
+  login erin   with K9#Vz!2qLm@8Xw4P       -> ACCESS DENIED
+  login frank  with river-copper-lant...   -> ACCESS GRANTED
+  login frank  with river-copper-lant...   -> ACCESS DENIED

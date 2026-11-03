@@ -1,0 +1,277 @@
+{
+  "env": {
+    "os": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "openssl": "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)"
+  },
+  "strength": {
+    "rows": [
+      {
+        "pw": "123456",
+        "len": 6,
+        "naive": 19.9,
+        "eff": 5.2,
+        "rating": "Very weak",
+        "note": "found in common-password list",
+        "t_fast": "instant (<1 s)",
+        "t_slow": "instant (<1 s)"
+      },
+      {
+        "pw": "password",
+        "len": 8,
+        "naive": 37.6,
+        "eff": 5.2,
+        "rating": "Very weak",
+        "note": "found in common-password list",
+        "t_fast": "instant (<1 s)",
+        "t_slow": "instant (<1 s)"
+      },
+      {
+        "pw": "Summer2024",
+        "len": 10,
+        "naive": 59.5,
+        "eff": 5.2,
+        "rating": "Very weak",
+        "note": "found in common-password list",
+        "t_fast": "instant (<1 s)",
+        "t_slow": "instant (<1 s)"
+      },
+      {
+        "pw": "Ab1!xy",
+        "len": 6,
+        "naive": 39.4,
+        "eff": 39.4,
+        "rating": "Weak",
+        "note": "no pattern found (assumes truly random choice)",
+        "t_fast": "37 seconds",
+        "t_slow": "242.3 days"
+      },
+      {
+        "pw": "P@ssw0rd!",
+        "len": 9,
+        "naive": 59.1,
+        "eff": 5.2,
+        "rating": "Very weak",
+        "note": "found in common-password list",
+        "t_fast": "instant (<1 s)",
+        "t_slow": "instant (<1 s)"
+      },
+      {
+        "pw": "Tr0ub4dor&3",
+        "len": 11,
+        "naive": 72.3,
+        "eff": 26.6,
+        "rating": "Very weak",
+        "note": "dictionary word 'troubador' + simple mutation",
+        "t_fast": "instant (<1 s)",
+        "t_slow": "48.6 minutes"
+      },
+      {
+        "pw": "river-copper-lantern-orbit-maple",
+        "len": 32,
+        "naive": 188.2,
+        "eff": 64.6,
+        "rating": "Strong",
+        "note": "5 random words (Diceware 7776-word list ASSUMED)",
+        "t_fast": "45.0 years",
+        "t_slow": "25.7 million years"
+      },
+      {
+        "pw": "k9#Vz!2qLm@8Xw4P",
+        "len": 16,
+        "naive": 105.1,
+        "eff": 105.1,
+        "rating": "Very strong",
+        "note": "no pattern found (assumes truly random choice)",
+        "t_fast": ">1 billion years",
+        "t_slow": ">1 billion years"
+      }
+    ],
+    "pbkdf2_rate_1core": 1.76,
+    "fast_rate": 10000000000.0,
+    "slow_rate": 17556
+  },
+  "weak": {
+    "candidates": 851,
+    "build_ms": 1.5,
+    "cracked_unsalted": 4,
+    "cracked_users": [
+      "alice",
+      "bob",
+      "carol",
+      "dave"
+    ],
+    "salted_table_useful": false,
+    "salted_cracked": 4,
+    "salted_tries": 1432,
+    "salted_ms": 2,
+    "pbkdf2_ms_per_guess": 465,
+    "sha_us_per_guess": 1.48
+  },
+  "secure": {
+    "stored_equal": false,
+    "attempts": [
+      {
+        "user": "alice",
+        "pw": "123456",
+        "ok": true
+      },
+      {
+        "user": "alice",
+        "pw": "1234567",
+        "ok": false
+      },
+      {
+        "user": "erin",
+        "pw": "k9#Vz!2qLm@8Xw4P",
+        "ok": true
+      },
+      {
+        "user": "erin",
+        "pw": "K9#Vz!2qLm@8Xw4P",
+        "ok": false
+      },
+      {
+        "user": "frank",
+        "pw": "river-copper-lant...",
+        "ok": true
+      },
+      {
+        "user": "frank",
+        "pw": "river-copper-lant...",
+        "ok": false
+      }
+    ],
+    "format": "algorithm$parameters$salt$hash",
+    "example": "pbkdf2_sha256$600000$3389MED2NcCemoT2OIrxzg==$RW+8MNJlCx3yr7"
+  },
+  "openssl": {
+    "sha_match": true,
+    "crypt_same_salt_equal": true,
+    "crypt_diff_salt_differs": true,
+    "pbkdf2_match": true,
+    "crypt_example": "$6$Zq8x3KpL$Dr1MI9P8o9iSki82AQJ7ZKqgT78J"
+  },
+  "tests": {
+    "results": [
+      {
+        "id": "T1",
+        "desc": "Correct password verifies (PBKDF2)",
+        "expected": "True",
+        "actual": "True",
+        "pass": true
+      },
+      {
+        "id": "T2",
+        "desc": "Wrong password is rejected",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T3",
+        "desc": "Case change is rejected (case sensitive)",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T4",
+        "desc": "Extra trailing space is rejected",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T5",
+        "desc": "Empty password is rejected",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T6",
+        "desc": "Same password hashed twice gives different stored values",
+        "expected": "True",
+        "actual": "True",
+        "pass": true
+      },
+      {
+        "id": "T7",
+        "desc": "Both of those different stored values still verify",
+        "expected": "True",
+        "actual": "True",
+        "pass": true
+      },
+      {
+        "id": "T8",
+        "desc": "Tampered stored hash (1 bit flipped) is rejected",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T9",
+        "desc": "Correct password verifies (scrypt)",
+        "expected": "True",
+        "actual": "True",
+        "pass": true
+      },
+      {
+        "id": "T10",
+        "desc": "Wrong password rejected (scrypt)",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T11",
+        "desc": "Malformed stored string handled safely (no crash)",
+        "expected": "False",
+        "actual": "False",
+        "pass": true
+      },
+      {
+        "id": "T12",
+        "desc": "Unicode (NFC vs NFD form of same text) treated equal",
+        "expected": "True",
+        "actual": "True",
+        "pass": true
+      }
+    ],
+    "passed": 12,
+    "total": 12
+  },
+  "bench": [
+    {
+      "name": "MD5",
+      "t": 5.143521399999429e-07,
+      "hps": 1944193.3302739074,
+      "ratio": 0.8245053347242851
+    },
+    {
+      "name": "SHA-256",
+      "t": 6.238311850000854e-07,
+      "hps": 1602997.7725462106,
+      "ratio": 1.0
+    },
+    {
+      "name": "SHA-512",
+      "t": 8.012382499998693e-07,
+      "hps": 1248068.2244016223,
+      "ratio": 1.2843831300286144
+    },
+    {
+      "name": "PBKDF2-SHA256 (600k)",
+      "t": 0.47363732233333167,
+      "hps": 2.111320102633783,
+      "ratio": 759239.5726950823
+    },
+    {
+      "name": "scrypt (N=2^15,r=8)",
+      "t": 0.1324027213333352,
+      "hps": 7.552714853061172,
+      "ratio": 212241.26737639296
+    }
+  ]
+}

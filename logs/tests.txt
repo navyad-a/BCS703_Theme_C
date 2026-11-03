@@ -1,0 +1,16 @@
+  ID  Test                                                      Expected / Actual   Result
+--------------------------------------------------------------------------------------------
+  T1  Correct password verifies (PBKDF2)                        exp=True  got=True  PASS
+  T2  Wrong password is rejected                                exp=False got=False PASS
+  T3  Case change is rejected (case sensitive)                  exp=False got=False PASS
+  T4  Extra trailing space is rejected                          exp=False got=False PASS
+  T5  Empty password is rejected                                exp=False got=False PASS
+  T6  Same password hashed twice gives different stored values  exp=True  got=True  PASS
+  T7  Both of those different stored values still verify        exp=True  got=True  PASS
+  T8  Tampered stored hash (1 bit flipped) is rejected          exp=False got=False PASS
+  T9  Correct password verifies (scrypt)                        exp=True  got=True  PASS
+  T10 Wrong password rejected (scrypt)                          exp=False got=False PASS
+  T11 Malformed stored string handled safely (no crash)         exp=False got=False PASS
+  T12 Unicode (NFC vs NFD form of same text) treated equal      exp=True  got=True  PASS
+--------------------------------------------------------------------------------------------
+  12/12 tests passed

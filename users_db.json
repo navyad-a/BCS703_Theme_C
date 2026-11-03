@@ -1,0 +1,6 @@
+{
+  "alice": "pbkdf2_sha256$600000$3389MED2NcCemoT2OIrxzg==$RW+8MNJlCx3yr7gHSTCWzigazyv2Y258jEwJtqiGS14=",
+  "bob": "pbkdf2_sha256$600000$IIqf2MsGasb8TAlt+5g2Jg==$8e9M6VZZchsDw8Mw172r0vdX7g4ZqcWnUPlGSnnhepI=",
+  "erin": "pbkdf2_sha256$600000$izpjnyWbfuWczkHEBtaBRg==$mqRl02PZJTynw1aoYmWMrtXi+0GnUhkudajCIn/za5A=",
+  "frank": "scrypt$32768$8$1$CF7L7FhHm3hmHBhGmKinlQ==$Wy6SbSdP0DSdEsbV/fciYak96a1qkc5blQaqK+Bb3PM="
+}

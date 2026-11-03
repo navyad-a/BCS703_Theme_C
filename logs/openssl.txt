@@ -1,0 +1,18 @@
+$ openssl version
+OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)
+
+[1] Unsalted SHA-256 of '123456' - OpenSSL vs Python
+  openssl : 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+  python  : 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+  match   : True
+
+[2] OpenSSL salted SHA-512-crypt ($6$) - same salt gives same output, new salt gives new output
+  salt Zq8x3KpL : $6$Zq8x3KpL$Dr1MI9P8o9iSki82AQJ7ZKqgT78JfiDyguXSIknIM7If...
+  salt Zq8x3KpL : $6$Zq8x3KpL$Dr1MI9P8o9iSki82AQJ7ZKqgT78JfiDyguXSIknIM7If...  (identical: True)
+  salt Mn4v7RtW : $6$Mn4v7RtW$7Yj3W4UEX99EEJIOaJpaT6FQQ/yMwqR38AoAqYgfJJH4...  (different: True)
+
+[3] PBKDF2-HMAC-SHA256 (600,000 iterations): OpenSSL kdf vs Python hashlib
+  $ openssl kdf -keylen 32 -kdfopt digest:SHA256 -kdfopt pass:Summer2024 -kdfopt hexsalt:000102030405060708090a0b0c0d0e0f -kdfopt iter:600000 PBKDF2
+  openssl : f3b08bba36bbfc68e0b73526cea5e160d38312f5968fa30662b0a760c8bce883
+  python  : f3b08bba36bbfc68e0b73526cea5e160d38312f5968fa30662b0a760c8bce883
+  match   : True
